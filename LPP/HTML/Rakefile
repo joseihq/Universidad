@@ -1,0 +1,25 @@
+require 'rake'
+require 'rake/testtask'
+load 'lib/LYPHtml.rb'
+
+task :default => [:test]
+
+desc "Run the Unit Tests"
+Rake::TestTask.new("test") { |t|
+  t.pattern = 'test/test*.rb'
+  t.verbose = true
+  t.warning = false
+}
+
+
+task :dist do
+`tar czvf html.tar.gz *`
+end
+
+task :zip do
+`zip -r html.zip ./*`
+end
+
+task :clean do
+`rm *.~`
+end
